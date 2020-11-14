@@ -53,6 +53,7 @@
                                                 <label for="" class="col-sm-6 col-form-label">Rating</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="rating" min="1" max="5 required class="form-control" placeholder="3">
+                                                    <br/>
                                                     *Rating should be between 1 and 5 inclusively"
                                                 </div>
                                                 <label for="" class="col-sm-6 col-form-label">Budget</label>
@@ -72,21 +73,23 @@
                                                 <div class="col-sm-10">
                                                     <input type="text" name="youtube" class="form-control" placeholder="">
                                                 </div>
-                                                <label for="" class="col-sm-6 col-form-label">Add thumbnail</label>
+                                                <label for="" class="col-sm-6 col-form-label">Add thumbnail (Width-362px , Height - 204px)</label>
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input accept="image/*"  type="file" class="custom-file-input" name="thumbnailUpload" id="thumbnailUploadButton" onChange="SingleImageUpdateBase64('thumbnail')" >
                                                         <input type="hidden" class="custom-file-input" name="thumbnail" id="thumbnailUploadBase64">
                                                         <label class="custom-file-label" for="thumbnailUpload">Choose file</label>
                                                     </div>
+                                                    <div id="thumbnailName"></div>
                                                 </div>
-                                                <label for="" class="col-sm-6 col-form-label">Add Banner</label>
+                                                <label for="" class="col-sm-6 col-form-label">Add Banner  (Width-1920px , Height -650px)</label>
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input accept="image/*"  type="file" class="custom-file-input" name="bannerUpload" id="bannerUploadButton" onChange="SingleImageUpdateBase64('banner')" >
                                                         <input type="hidden" class="custom-file-input" name="banner" id="bannerUploadBase64">
                                                         <label class="custom-file-label" for="bannerUpload">Choose file</label>
                                                     </div>
+                                                    <div id="bannerName"></div>
                                                 </div>
                                                 <label for="" class="col-sm-6 col-form-label">Add Images</label>
                                                 <div class="input-group mb-3">
@@ -96,7 +99,7 @@
                                                         <label class="custom-file-label" for="galleryUpload">Choose file</label>
                                                     </div>
                                                 </div>
-                                                <label for="" class="col-sm-6 col-form-label">Add Schedule</label>
+                                                <label for="" class="col-sm-6 col-form-label">Add Schedule (Width-263px , Height - 180px)</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" name="descriptionSchedule" class="form-control" placeholder="Add Schedule Description"><br/>
                                                     <div class="custom-file">
@@ -133,9 +136,7 @@
                                                 </div>`);
     $(this).before(domElement);
   });
-
 });
-
                     const toBase64 = file => new Promise((resolve, reject) => {
                         const reader = new FileReader();
                         reader.readAsDataURL(file);
@@ -161,6 +162,7 @@
                     async function SingleImageUpdateBase64(field){
                         const file = document.querySelector(`#${field}UploadButton`).files[0];
                         document.getElementById(`${field}UploadBase64`).value  = await toBase64(file)
+                        document.getElementById(`${field}Name`).innerHTML=file.name
                         alert(`${file.name} Uploaded`);
                     }
                     </script>

@@ -50,21 +50,23 @@
                                                     <input type="text" name="state" minlength="3" maxlength="50" size="50" required class="form-control" placeholder="HP">
                                                     *State must be 3 to 50 character long
                                                 </div>
-                                                <label for="" class="col-sm-6 col-form-label">Add thumbnail</label>
+                                                <label for="" class="col-sm-6 col-form-label">Add thumbnail  (Width-362px , Height - 204px)</label>
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input accept="image/*" required  type="file" class="custom-file-input" name="thumbnailUpload" id="thumbnailUploadButton" onChange="UpdateBase64('thumbnail')" >
                                                         <input type="hidden" class="custom-file-input" name="thumbnail" id="thumbnailUploadBase64">
                                                         <label class="custom-file-label" for="thumbnailUpload">Choose file</label>
                                                     </div>
+                                                    <div id="thumbnailName"></div>
                                                 </div>
-                                                <label for="" class="col-sm-6 col-form-label">Add Banner</label>
+                                                <label for="" class="col-sm-6 col-form-label">Add Banner (Width-1920px , Height -650px)</label>
                                                 <div class="input-group mb-3">
                                                     <div class="custom-file">
                                                         <input accept="image/*" required  type="file" class="custom-file-input" name="bannerUpload" id="bannerUploadButton" onChange="UpdateBase64('banner')" >
                                                         <input type="hidden" class="custom-file-input" name="banner" id="bannerUploadBase64">
                                                         <label class="custom-file-label" for="bannerUpload">Choose file</label>
                                                     </div>
+                                                    <div id="bannerName"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 text-center ">
@@ -82,6 +84,7 @@
                     async function UpdateBase64(field){
                         const file = document.querySelector(`#${field}UploadButton`).files[0];
                         document.getElementById(`${field}UploadBase64`).value  = await toBase64(file)
+                        document.getElementById(`${field}Name`).innerHTML=file.name
                         alert(`${file.name} Uploaded`);
                     }
                     const toBase64 = file => new Promise((resolve, reject) => {
