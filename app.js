@@ -11,10 +11,10 @@ dotenv.config();
 app.use(
   bodyParser.urlencoded({
     extended: false,
-    limit: "100mb",
+    limit: "500mb",
   })
 );
-app.use(bodyParser.json({ limit: "100mb" }));
+app.use(bodyParser.json({ limit: "500mb" }));
 app.use(
   session({
     secret: "keyboard cat",
